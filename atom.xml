@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>默言</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://iam070.com/"/>
+  <updated>2019-02-10T15:33:16.614Z</updated>
+  <id>http://iam070.com/</id>
+  
+  <author>
+    <name>56</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World!</title>
+    <link href="http://iam070.com/2019/02/10/hello-world/"/>
+    <id>http://iam070.com/2019/02/10/hello-world/</id>
+    <published>2019-02-10T15:33:16.618Z</published>
+    <updated>2019-02-10T15:33:16.614Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code class="asm">org 100hxchg    bp,axmov     dx,textint     21hrettext:db &#39;Hello World!$&#39;</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code class=&quot;asm&quot;&gt;org 100h
+xchg    bp,ax
+mov     dx,text
+int     21h
+ret
+text:
+db &amp;#39;Hello World!$&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

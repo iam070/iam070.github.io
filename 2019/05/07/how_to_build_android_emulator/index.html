@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="keywords" content="hexo, autumn">
+    <title>
+        默言
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.js"></script>
+    <script>
+        infiniteScroll()
+
+        // for mobile menu
+        $(function () {
+            $('.social-button').click(function () {
+                if ($('.social-links').hasClass('hide-links')) {
+                    $('.social-links').removeClass('hide-links')
+                } else {
+                    $('.social-links').addClass('hide-links')
+                }
+            })
+        })
+    </script>
+</head>
+
+    <body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <div class="container">
+            <header class="header">
+    <h1 class="title">
+        <a href="/" class="logo">
+            默言
+        </a>
+    </h1>
+    <h2 class="desc">
+        
+    </h2>
+
+    <nav class="links">
+        <button class="social-button">
+            menu
+        </button>
+        <ul class="social-links hide-links">
+            
+                <li>
+                    <a href="https://github.com/iam070">
+                        Github
+                    </a>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+                <main class="main">
+                    <article class="post">
+    
+    
+    
+    <h2 class="post-title">
+        编译Android Emulator
+    </h2>
+    <ul class="post-date">
+        <li>
+            2019-05-07
+        </li>
+        <li>
+            56
+        </li>
+    </ul>
+    <div class="post-content">
+        <h1 id="获取源代码"><a href="#获取源代码" class="headerlink" title="获取源代码"></a>获取源代码</h1><p>Android Emulator的代码在默认的AOSP版本中并未包含，需要指定相关的版本后才能同步。</p>
+<h2 id="获取repo"><a href="#获取repo" class="headerlink" title="获取repo"></a>获取repo</h2><p>跟ASOP一样，下载Android Emulator的代码，同样需要使用repo工具，可以访问网页<br><a href="https://source.android.com/source/downloading.html" target="_blank" rel="noopener">https://source.android.com/source/downloading.html</a> 获取下载及相关安装指导。</p>
+<h2 id="选择当前Android-Studio的开发分支"><a href="#选择当前Android-Studio的开发分支" class="headerlink" title="选择当前Android Studio的开发分支"></a>选择当前Android Studio的开发分支</h2><p>查看网页 <a href="http://tools.android.com/build" target="_blank" rel="noopener">http://tools.android.com/build</a> 获取最新的分支信息，当前的分支为emu-master-dev</p>
+<h2 id="使用repo检出代码"><a href="#使用repo检出代码" class="headerlink" title="使用repo检出代码"></a>使用repo检出代码</h2><pre><code class="sh">mkdir emu-master-dev
+cd emu-master-dev
+repo init -u https://android.googlesource.com/platform/manifest \
+        -b emu-master-dev
+repo sync
+</code></pre>
+<p>可以将emu-master-dev替换成其他你想要切换的分支。</p>
+<p>下文将emu-master-dev目录用$TOP来代替。</p>
+<h2 id="网络链接不稳的处理"><a href="#网络链接不稳的处理" class="headerlink" title="网络链接不稳的处理"></a>网络链接不稳的处理</h2><p>国内访问AOSP网站经常出现“不稳定”的情况，因此推荐从国内的TUNA源获取代码，详情可以<br>访问<a href="https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/</a></p>
+<h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><p>如果一切依赖关系都满足，则执行以下命令就可以顺利编译出Android Emulator。</p>
+<pre><code class="sh">  cd $TOP/external/qemu
+  ./android/rebuild.sh
+</code></pre>
+<p>默认编译出来的文件是放在$TOP/external/qemu下的objs目录，可以使用–out-dir=&lt;path><br>换成你要的目录</p>
+<p>在objs目录下，有几个有趣的测试程序:</p>
+<pre><code class="sh">HelloTriangle
+HelloHostComposition
+HelloSurfaceFlinger
+HelloVulkan
+</code></pre>
+<p>这些是主机侧的图形界面测试程序，默认执行时不会有图形显示，需要设置环境变量才会有<br>显示。</p>
+<pre><code class="sh"># 是否使用主机的GPU加速，经测试设置后，无法正常关闭
+export ANDROID_EMU_TEST_WITH_HOST_GPU=1
+# 是否显示图形窗口
+export ANDROID_EMU_TEST_WITH_WINDOW=1
+</code></pre>
+
+    </div>
+</article>
+                </main>
+                <aside class="aside">
+                    <section class="aside-section">
+                        
+    <h1>Categories</h1>
+
+    
+
+                    </section>
+                    <section class="aside-section">
+                        
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a></li></ul>
+
+
+                    </section>
+                    <section class="aside-section tag">
+                        
+    <h1>Tags</h1>
+
+    
+
+                    </section>
+                </aside>
+        </div>
+    </body>
+
+</html>

@@ -1,87 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <meta name="keywords" content="hexo, autumn">
-    <title>
-        默言
-    </title>
-    <!-- favicon -->
-    
-    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico">
-    
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="utf-8">
+  
+  <title>编译Android Emulator | 070的文章</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="获取源代码Android Emulator的代码在默认的AOSP版本中并未包含，需要指定相关的版本后才能同步。 获取repo跟ASOP一样，下载Android Emulator的代码，同样需要使用repo工具，可以访问网页https://source.android.com/source/downloading.html 获取下载及相关安装指导。 选择当前Android Studio的开发分支查看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译Android Emulator">
+<meta property="og:url" content="http://iam070.com/2019/05/07/how_to_build_android_emulator/index.html">
+<meta property="og:site_name" content="070的文章">
+<meta property="og:description" content="获取源代码Android Emulator的代码在默认的AOSP版本中并未包含，需要指定相关的版本后才能同步。 获取repo跟ASOP一样，下载Android Emulator的代码，同样需要使用repo工具，可以访问网页https://source.android.com/source/downloading.html 获取下载及相关安装指导。 选择当前Android Studio的开发分支查看">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-06T16:11:03.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编译Android Emulator">
+<meta name="twitter:description" content="获取源代码Android Emulator的代码在默认的AOSP版本中并未包含，需要指定相关的版本后才能同步。 获取repo跟ASOP一样，下载Android Emulator的代码，同样需要使用repo工具，可以访问网页https://source.android.com/source/downloading.html 获取下载及相关安装指导。 选择当前Android Studio的开发分支查看">
+  
+    <link rel="alternate" href="/atom.xml" title="070的文章" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
 
-    <!-- highlight -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css">
-    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad()
-    </script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.css">
-    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.js"></script>
-    <script>
-        infiniteScroll()
-
-        // for mobile menu
-        $(function () {
-            $('.social-button').click(function () {
-                if ($('.social-links').hasClass('hide-links')) {
-                    $('.social-links').removeClass('hide-links')
-                } else {
-                    $('.social-links').addClass('hide-links')
-                }
-            })
-        })
-    </script>
 </head>
-
-    <body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
-        <div class="container">
-            <header class="header">
-    <h1 class="title">
-        <a href="/" class="logo">
-            默言
-        </a>
-    </h1>
-    <h2 class="desc">
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
         
-    </h2>
-
-    <nav class="links">
-        <button class="social-button">
-            menu
-        </button>
-        <ul class="social-links hide-links">
-            
-                <li>
-                    <a href="https://github.com/iam070">
-                        Github
-                    </a>
-                </li>
-                
-        </ul>
-    </nav>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://iam070.com"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">070的文章</a>
+      </h1>
+      
+    </div>
+  </div>
 </header>
-                <main class="main">
-                    <article class="post">
+      <div class="outer">
+        <section id="main"><article id="post-how_to_build_android_emulator" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/07/how_to_build_android_emulator/" class="article-date">
+  <time datetime="2019-05-06T16:11:03.100Z" itemprop="datePublished">2019-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      编译Android Emulator
+    </h1>
+  
+
+      </header>
     
-    <h2 class="post-title">
-        编译Android Emulator
-    </h2>
-    <ul class="post-date">
-        <li>
-            2019-05-07
-        </li>
-        <li>
-            56
-        </li>
-    </ul>
-    <div class="post-content">
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
         <h1 id="获取源代码"><a href="#获取源代码" class="headerlink" title="获取源代码"></a>获取源代码</h1><p>Android Emulator的代码在默认的AOSP版本中并未包含，需要指定相关的版本后才能同步。</p>
 <h2 id="获取repo"><a href="#获取repo" class="headerlink" title="获取repo"></a>获取repo</h2><p>跟ASOP一样，下载Android Emulator的代码，同样需要使用repo工具，可以访问网页<br><a href="https://source.android.com/source/downloading.html" target="_blank" rel="noopener">https://source.android.com/source/downloading.html</a> 获取下载及相关安装指导。</p>
 <h2 id="选择当前Android-Studio的开发分支"><a href="#选择当前Android-Studio的开发分支" class="headerlink" title="选择当前Android Studio的开发分支"></a>选择当前Android Studio的开发分支</h2><p>查看网页 <a href="http://tools.android.com/build" target="_blank" rel="noopener">http://tools.android.com/build</a> 获取最新的分支信息，当前的分支为emu-master-dev</p>
@@ -112,34 +120,181 @@ export ANDROID_EMU_TEST_WITH_HOST_GPU=1
 export ANDROID_EMU_TEST_WITH_WINDOW=1
 </code></pre>
 
+      
     </div>
+    <footer class="article-footer">
+      <a data-url="http://iam070.com/2019/05/07/how_to_build_android_emulator/" data-id="cjykapquk0001z1dkxmrqt0ad" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/10/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Hello World!</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-                </main>
-                <aside class="aside">
-                    <section class="aside-section">
-                        
-    <h1>Categories</h1>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+       
+      
+      
+  </div>
+ 
+  
 
+</section>
+           
+    <aside id="sidebar">
+  
     
 
-                    </section>
-                    <section class="aside-section">
-                        
-    <h1>Archives</h1>
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#获取源代码"><span class="toc-number">1.</span> <span class="toc-text">获取源代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取repo"><span class="toc-number">1.1.</span> <span class="toc-text">获取repo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择当前Android-Studio的开发分支"><span class="toc-number">1.2.</span> <span class="toc-text">选择当前Android Studio的开发分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用repo检出代码"><span class="toc-number">1.3.</span> <span class="toc-text">使用repo检出代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络链接不稳的处理"><span class="toc-number">1.4.</span> <span class="toc-text">网络链接不稳的处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编译"><span class="toc-number">2.</span> <span class="toc-text">编译</span></a></li></ol>
+          </div>
+      </div>
+    </div>
 
-    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a></li></ul>
-
-
-                    </section>
-                    <section class="aside-section tag">
-                        
-    <h1>Tags</h1>
-
+  
     
 
-                    </section>
-                </aside>
-        </div>
-    </body>
+  
+    
+  
+    
+  
+    
 
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2019 56&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;iam070@gmail.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png">
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
 </html>
